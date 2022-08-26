@@ -4,6 +4,10 @@
         <value>yarn</value>
     </property>
     <property>
+        <name>mapreduce.application.classpath</name>
+        <value>$HADOOP_MAPRED_HOME/share/hadoop/mapreduce/*:$HADOOP_MAPRED_HOME/share/hadoop/mapreduce/lib/*</value>
+    </property>
+    <property>
         <name>mapreduce.jobhistory.keytab</name>
         <value>/etc/security/keytabs/jhs.service.keytab</value>
     </property> 
@@ -32,4 +36,44 @@
          <name>mapreduce.jobhistory.webapp.spnego-principal</name>
          <value>HTTP/_HOST@EXAMPLE.COM</value>
     </property>  
+
+    <!-- Resources-->
+    <property>
+         <name>yarn.app.mapreduce.am.resource.mb</name>
+         <value>1024</value>
+    </property>
+    <property>
+         <name>yarn.app.mapreduce.am.command-opts</name>
+         <value>-Xmx768m</value>
+    </property>
+    <property>
+         <name>mapreduce.map.memory.mb</name>
+         <value>512</value>
+    </property>
+    <property>
+         <name>mapreduce.reduce.memory.mb</name>
+         <value>512</value>
+    </property>
+    <property>
+         <name>mapreduce.map.java.opts</name>
+         <value>-Xmx1024m</value>
+    </property>
+    <property>
+         <name>mapreduce.reduce.java.opts</name>
+         <value>-Xmx1024m</value>
+    </property>
+
+    <property>
+         <name>mapreduce.[map|reduce].cpu.vcores</name>
+         <value>1</value>
+    </property>
+    <property>
+         <name>mapreduce.[map|reduce].memory.mb</name>
+         <value>1024</value>
+    </property>
+    <property>
+         <name>mapreduce.[map|reduce].java.opts</name>
+         <value>-Xmx768m</value>
+    </property>
+    
 </configuration>

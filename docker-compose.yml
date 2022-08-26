@@ -20,15 +20,16 @@ services:
       REALM: EXAMPLE.COM
       DOMAIN_REALM: kdc.kerberos.com
     volumes:
-      - "./config_files/krb5.conf:/etc/krb5.conf"
       - "/dev/urandom:/dev/random"
       - "/etc/localtime:/etc/localtime:ro"
 
   hadoop-secure:
+    ports:
+      - "8088:8088"
     networks:
       custom:
         ipv4_address: 172.22.0.3
-    image: knappek/hadoop-secure:2.7.4
+    image: djglock/docker-hadoop-secure:0.3
     depends_on: 
       - kdc
     hostname: hadoop
@@ -41,5 +42,4 @@ services:
       DOMAIN_REALM: kdc.kerberos.com
       FQDN: hadoop.docker.com
     volumes:
-      - "./config_files/krb5.conf:/etc/krb5.conf"
       - "/etc/localtime:/etc/localtime:ro"
