@@ -100,3 +100,10 @@ export HADOOP_SECURE_DN_PID_DIR=${HADOOP_PID_DIR}
 
 # A string representing this instance of hadoop. $USER by default.
 export HADOOP_IDENT_STRING=$USER
+
+# Set hadoop user
+export HDFS_NAMENODE_USER="hadoop"
+export HDFS_DATANODE_USER="hadoop"
+export HDFS_SECONDARYNAMENODE_USER="hadoop"
+export YARN_RESOURCEMANAGER_USER="hadoop"
+export YARN_NODEMANAGER_USER="hadoop"

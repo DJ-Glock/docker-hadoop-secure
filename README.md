@@ -28,6 +28,9 @@ Default Environment Variables
 
 You can simply define these variables in the `docker-compose.yml`.
 
+Default user for Spark
+-----------------------------
+Default user:group for spark jobs: hadoop:hadoop.
 
 Run image
 ---------
@@ -100,7 +103,7 @@ keytool -import -keystore keystore.jks -alias CARoot -file server.crt
 
 
 ## Credits
-https://hadoop.apache.org/docs/r3.1.2/hadoop-project-dist/hadoop-common/SingleCluster.html#Pseudo-Distributed_Operation
-https://hadoop.apache.org/docs/r3.1.2/hadoop-project-dist/hadoop-common/ClusterSetup.html
-
-https://www.linode.com/docs/guides/install-configure-run-spark-on-top-of-hadoop-yarn-cluster/
+Some docs
+- https://hadoop.apache.org/docs/r3.1.2/hadoop-project-dist/hadoop-common/SingleCluster.html#Pseudo-Distributed_Operation
+- https://hadoop.apache.org/docs/r3.1.2/hadoop-project-dist/hadoop-common/ClusterSetup.html
+- https://www.linode.com/docs/guides/install-configure-run-spark-on-top-of-hadoop-yarn-cluster/

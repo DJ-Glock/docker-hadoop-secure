@@ -64,7 +64,7 @@
    
   <property>
        <name>yarn.nodemanager.linux-container-executor.group</name>
-       <value>root</value>
+       <value>hadoop</value>
   </property>
    
   <property>
@@ -121,5 +121,9 @@
   <property>
        <name>yarn.nodemanager.resource.cpu-vcores</name>
        <value>4</value>
+  </property>
+  <property>
+       <name>yarn.nodemanager.disk-health-checker.max-disk-utilization-per-disk-percentage</name>
+       <value>99</value>
   </property>
 </configuration>
