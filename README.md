@@ -66,6 +66,8 @@ hdfs dfs -ls /
 
 Run spark-submit job that will write or read files into HDFS.
 
+parquet-tools installed for convenience. There is an alias parquet-tools and parquet-tools.sh for non interactive usage (for example in sh scripts).
+
 Known issues
 ------------
 

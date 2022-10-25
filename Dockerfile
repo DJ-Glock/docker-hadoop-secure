@@ -121,6 +121,9 @@ RUN wget https://archive.apache.org/dist/parquet/apache-parquet-1.9.0/apache-par
     cd /home/hadoop/apache-parquet-1.9.0/parquet-tools/ && \
     mvn clean package -Plocal && \
     echo alias parquet-tools=\"java -jar /home/hadoop/apache-parquet-1.9.0/parquet-tools/target/parquet-tools-1.9.0.jar\" >> /home/hadoop/.bashrc
+ADD parquet-tools.sh /home/hadoop/tools/parquet-tools.sh
+RUN sudo chmod +x /home/hadoop/tools/parquet-tools.sh
+ENV PATH $PATH:/home/hadoop/tools
 
 CMD ["/etc/bootstrap.sh"]
 
