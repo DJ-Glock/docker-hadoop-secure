@@ -106,6 +106,10 @@ ENV LD_LIBRARY_PATH $HADOOP_HOME/lib/native:$LD_LIBRARY_PATH
 RUN chown -R hadoop:hadoop $SPARK_HOME && \
     mv $SPARK_HOME/conf/spark-defaults.conf.template $SPARK_HOME/conf/spark-defaults.conf
 
+### Additional Spark jars
+RUN wget https://repo1.maven.org/maven2/com/google/guava/guava/19.0/guava-19.0.jar && \
+    mv guava-19.0.jar /usr/local/spark/jars
+
 ### Bootstrap script with configs changes and startup
 ENV BOOTSTRAP /etc/bootstrap.sh
 ADD bootstrap.sh $BOOTSTRAP
