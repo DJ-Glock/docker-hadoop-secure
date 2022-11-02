@@ -29,7 +29,7 @@ services:
     networks:
       custom:
         ipv4_address: 172.22.0.3
-    image: djglock/docker-hadoop-secure:0.17
+    image: djglock/docker-hadoop-secure:0.18
     depends_on: 
       - kdc
     hostname: hadoop

@@ -8,7 +8,7 @@ RUN groupadd hadoop && \
     useradd -rm -d /home/hadoop -s /bin/bash -g hadoop -G wheel -u 1001 hadoop
 
 ### Prerequisites
-RUN yum install -y less wget curl which tar sudo openssh-server openssh-clients rsync net-tools maven
+RUN yum install -y less wget curl which tar sudo openssh-server openssh-clients rsync net-tools maven dos2unix
 
 RUN wget https://builds.openlogic.com/downloadJDK/openlogic-openjdk/8u342-b07/openlogic-openjdk-8u342-b07-linux-x64.tar.gz &&\
     mkdir -p /usr/java/default && \
