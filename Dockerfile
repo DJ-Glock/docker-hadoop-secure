@@ -108,7 +108,8 @@ RUN chown -R hadoop:hadoop $SPARK_HOME && \
 
 ### Additional Spark jars
 RUN wget https://repo1.maven.org/maven2/com/google/guava/guava/19.0/guava-19.0.jar && \
-    mv guava-19.0.jar /usr/local/spark/jars
+    wget https://repo1.maven.org/maven2/org/apache/velocity/velocity/1.5/velocity-1.5.jar && \
+    mv guava-19.0.jar velocity-1.5.jar /usr/local/spark/jars
 
 ### Bootstrap script with configs changes and startup
 ENV BOOTSTRAP /etc/bootstrap.sh
