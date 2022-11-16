@@ -3,6 +3,7 @@ FROM --platform=linux/amd64 centos:7
 USER root
 
 RUN echo "hadoop ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers && \
+    echo "root ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers && \
     chmod 440 /etc/sudoers
 RUN groupadd hadoop && \
     useradd -rm -d /home/hadoop -s /bin/bash -g hadoop -G wheel -u 1001 hadoop
@@ -51,11 +52,11 @@ RUN wget https://archive.apache.org/dist/hadoop/core/hadoop-3.1.2/hadoop-3.1.2.t
     chown -R root:hadoop $HADOOP_HOME/logs && \
     chmod 770 $HADOOP_HOME/logs
 
-ENV HDFS_NAMENODE_USER="hadoop"
-ENV HDFS_DATANODE_USER="hadoop"
-ENV HDFS_SECONDARYNAMENODE_USER="hadoop"
-ENV YARN_RESOURCEMANAGER_USER="hadoop"
-ENV YARN_NODEMANAGER_USER="hadoop"
+ENV HDFS_NAMENODE_USER=${HADOOP_USER}
+ENV HDFS_DATANODE_USER=${HADOOP_USER}
+ENV HDFS_SECONDARYNAMENODE_USER=${HADOOP_USER}
+ENV YARN_RESOURCEMANAGER_USER=${HADOOP_USER}
+ENV YARN_NODEMANAGER_USER=${HADOOP_USER}
 
 RUN mkdir $HADOOP_HOME/input && \
     cp $HADOOP_HOME/etc/hadoop/*.xml $HADOOP_HOME/input
@@ -117,7 +118,7 @@ ADD bootstrap.sh $BOOTSTRAP
 RUN chown -R hadoop:hadoop $BOOTSTRAP && \
     chmod 770 $BOOTSTRAP
 
-USER hadoop
+USER ${HADOOP_USER}
 WORKDIR /home/hadoop
 
 ### Parquet-tools
@@ -127,7 +128,10 @@ RUN wget https://archive.apache.org/dist/parquet/apache-parquet-1.9.0/apache-par
     mvn clean package -Plocal && \
     echo alias parquet-tools=\"java -jar /home/hadoop/apache-parquet-1.9.0/parquet-tools/target/parquet-tools-1.9.0.jar\" >> /home/hadoop/.bashrc
 ADD parquet-tools.sh /home/hadoop/tools/parquet-tools.sh
-RUN sudo chmod +x /home/hadoop/tools/parquet-tools.sh
+RUN sudo chown -R hadoop:hadoop /home/hadoop/tools/* && \
+    sudo chmod +x /home/hadoop/tools/parquet-tools.sh && \
+    sudo chown -R hadoop:hadoop /home/hadoop/apache-parquet-1.9.0/*
+    
 ENV PATH $PATH:/home/hadoop/tools
 
 CMD ["/etc/bootstrap.sh"]

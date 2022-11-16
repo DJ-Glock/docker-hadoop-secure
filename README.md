@@ -25,6 +25,7 @@ Default Environment Variables
 | `KERBEROS_ADMIN` | `admin/admin` | The KDC admin user |
 | `KERBEROS_ADMIN_PASSWORD` | `admin` | The KDC admin password |
 | `KERBEROS_ROOT_USER_PASSWORD` | `password` | The password of the Kerberos principal `root` which maps to the OS root user |
+| `HADOOP_USER` | `hadoop` | Default user for running hadoop |
 
 You can simply define these variables in the `docker-compose.yml`.
 

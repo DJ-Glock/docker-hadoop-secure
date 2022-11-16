@@ -2,6 +2,9 @@
 
 echo "Starting bootstrap.sh"
 
+echo "Current user:"
+whoami
+
 # FIXME: Need to implement working healthcheck for Kerberos container.
 echo "Sleeping 5 seconds"
 sleep 5
@@ -85,7 +88,10 @@ echo "Starting Node Manager"
 yarn --config $HADOOP_CONF_DIR --daemon start nodemanager
 
 echo "Setting up permissions for spark"
-hdfs dfs -chown hadoop:hadoop /
+while [ "$(hdfs dfs -chown hadoop:hadoop / | wc -l)" != "0" ]
+do
+    sleep 1
+done
 
 echo "Hadoop cluster started. Starting endless loop"
 while true; do sleep 1000; done
