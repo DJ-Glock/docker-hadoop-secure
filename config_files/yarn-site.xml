@@ -126,4 +126,9 @@
        <name>yarn.nodemanager.disk-health-checker.max-disk-utilization-per-disk-percentage</name>
        <value>99</value>
   </property>
+
+  <property>
+       <name>yarn.nodemanager.vmem-check-enabled</name>
+       <value>false</value>
+  </property>
 </configuration>
